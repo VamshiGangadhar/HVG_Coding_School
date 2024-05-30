@@ -5,11 +5,15 @@ import {
   Typography,
   Button,
   Box,
+  IconButton,
+  Menu,
+  MenuItem,
 } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { keyframes } from "@emotion/react";
 import { styled } from "@mui/system";
+import MenuIcon from "@mui/icons-material/Menu";
 
 const scroll = keyframes`
     0% {
@@ -40,12 +44,23 @@ const ScrollingText = styled("div")({
 });
 
 const Navigation = () => {
+  const [anchorEl, setAnchorEl] = useState(null);
+
+  const handleMenuOpen = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleMenuClose = () => {
+    setAnchorEl(null);
+  };
+
   const navItems = [
     { name: "Home", link: "/" },
     { name: "About", link: "/about" },
     { name: "Contact", link: "/contact" },
     { name: "Courses", link: "/courses" },
   ];
+
   return (
     <>
       <CssBaseline>
@@ -66,16 +81,56 @@ const Navigation = () => {
             <Box sx={{ display: { xs: "none", sm: "block" } }}>
               {navItems.map((item) => (
                 <NavLink to={item.link} exact activeClassName="active">
-                  <Button key={item.name} sx={{ color: "#fff" }}>
+                  <Button
+                    key={item.name}
+                    sx={{
+                      color: "#fff",
+                      marginRight: "10px",
+                      borderRadius: "20px",
+                      backgroundColor: "#3f51b5",
+                    }}
+                  >
                     {item.name}
                   </Button>
                 </NavLink>
               ))}
             </Box>
+            <Box sx={{ display: { xs: "block", sm: "none" } }}>
+              <IconButton
+                size="large"
+                edge="end"
+                color="inherit"
+                aria-label="menu"
+                onClick={handleMenuOpen}
+              >
+                <MenuIcon />
+              </IconButton>
+              <Menu
+                anchorEl={anchorEl}
+                open={Boolean(anchorEl)}
+                onClose={handleMenuClose}
+              >
+                {navItems.map((item) => (
+                  <MenuItem key={item.name} onClick={handleMenuClose}>
+                    <NavLink to={item.link} exact activeClassName="active">
+                      <Button
+                        sx={{
+                          color: "#3f51b5",
+                          width: "100%",
+                          textTransform: "none",
+                        }}
+                      >
+                        {item.name}
+                      </Button>
+                    </NavLink>
+                  </MenuItem>
+                ))}
+              </Menu>
+            </Box>
           </Toolbar>
         </AppBar>
       </CssBaseline>
-      <ScrollingText>
+      <ScrollingText sx={{ fontSize: { xs: "12px", sm: "16px" } }}>
         <div>
           <span>Website is under development</span>
           <span style={{ paddingLeft: "100%" }}>
