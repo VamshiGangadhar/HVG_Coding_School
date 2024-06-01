@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { staticCourses } from "./staticCourses";
 import {
   Button,
@@ -10,8 +10,37 @@ import {
   CardMedia,
 } from "@mui/material";
 import { importImage } from "../../utils/importImages";
+import { REGISTRATION_LINK } from "../../utils/constants";
+import CourseDetailsComponent from "./components/CourseDetailsPopup";
+import CourseRatingPopup from "./components/CourseRatingPopup";
 
 const Courses = () => {
+  const [selectedCourse, setSelectedCourse] = useState(null);
+  const [rating, setRating] = useState(0);
+  const [isDetailsOpen, setIsDetailsOpen] = useState(false);
+  const [isRatingOpen, setIsRatingOpen] = useState(false);
+
+  const handleViewDetails = (course) => {
+    setSelectedCourse(course);
+    setIsDetailsOpen(true);
+  };
+
+  const handleViewRating = () => {
+    setIsRatingOpen(true);
+  };
+
+  const handleCloseDetails = () => {
+    setIsDetailsOpen(false);
+  };
+
+  const handleCloseRating = () => {
+    setIsRatingOpen(false);
+  };
+
+  const handleRatingChange = (event, newRating) => {
+    setRating(newRating);
+    console.log(rating);
+  };
   return (
     <div style={{ margin: "20px" }}>
       <Typography
@@ -75,9 +104,20 @@ const Courses = () => {
                   </Typography>
                 </CardContent>
                 <CardActions>
-                  <Button size="small">More Details</Button>
-                  <Button size="small">View Ratings</Button>
-                  <Button size="small" color="primary">
+                  <Button
+                    size="small"
+                    onClick={() => handleViewDetails(course)}
+                  >
+                    View Details
+                  </Button>
+                  <Button size="small" onClick={handleViewRating}>
+                    Rate Course
+                  </Button>
+                  <Button
+                    size="small"
+                    color="primary"
+                    onClick={() => (window.location.href = REGISTRATION_LINK)}
+                  >
                     Register
                   </Button>
                 </CardActions>
@@ -85,6 +125,20 @@ const Courses = () => {
             </Grid>
           );
         })}
+        {isDetailsOpen && (
+          <CourseDetailsComponent
+            course={selectedCourse}
+            onClose={handleCloseDetails}
+          />
+        )}
+        {isRatingOpen && (
+          <CourseRatingPopup
+            courseName={selectedCourse?.title}
+            rating={rating}
+            onRatingChange={handleRatingChange}
+            onClose={handleCloseRating}
+          />
+        )}
       </Grid>
     </div>
   );

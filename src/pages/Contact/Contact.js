@@ -1,4 +1,3 @@
-// Enhanced Contact page with MUI styling and clickable email address
 import React from "react";
 import { Typography, Paper, Grid, Button, Box } from "@mui/material";
 import EmailIcon from "@mui/icons-material/Email";
@@ -21,7 +20,7 @@ const Contact = () => {
               Email:{" "}
               <Button
                 onClick={handleEmailClick}
-                style={{ textTransform: "none", color: "inherit" }}
+                style={{ textTransform: "none" }}
               >
                 vamshi.gangadhar365@gmail.com
               </Button>
