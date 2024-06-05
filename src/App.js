@@ -4,6 +4,7 @@ import About from "./pages/About/About";
 import Navigation from "./components/NavigationBar/Navigation";
 import Contact from "./pages/Contact/Contact";
 import Courses from "./pages/Courses/Courses";
+import AIandML from "./pages/CourseContent/AIandML";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/courses" element={<Courses />} />
+        <Route path="/courses/AIandML" element={<AIandML />} />
         <Route path="*" element={<h1>404</h1>} />
       </Routes>
     </div>

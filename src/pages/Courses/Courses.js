@@ -120,6 +120,13 @@ const Courses = () => {
                   >
                     Register
                   </Button>
+                  <Button
+                    size="small"
+                    color="primary"
+                    onClick={() => (window.location.href = course.course_path)}
+                  >
+                    learn Course
+                  </Button>
                 </CardActions>
               </Card>
             </Grid>
