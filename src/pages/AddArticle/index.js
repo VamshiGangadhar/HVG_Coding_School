@@ -1,15 +1,7 @@
-import React, { useState } from "react";
-import ReactMarkdown from "react-markdown";
+import React from "react";
 
 const AddArticle = () => {
-  const [text, setText] = useState("# Start writing here");
-
-  return (
-    <div data-color-mode="light">
-      <textarea value={text} onChange={(e) => setText(e.target.value)} />
-      <ReactMarkdown>{text}</ReactMarkdown>
-    </div>
-  );
+  return <div data-color-mode="light">Add article</div>;
 };
 
 export default AddArticle;
