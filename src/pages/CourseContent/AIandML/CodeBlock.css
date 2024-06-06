@@ -1,0 +1,24 @@
+.code-block {
+    background-color: #2d2d2d;
+    color: #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+  }
+  
+  .code-block h4 {
+    color: #f08d49;
+    margin-bottom: 5px;
+  }
+  
+  .code-block pre {
+    background-color: #2d2d2d;
+    padding: 10px;
+    overflow-x: auto;
+  }
+  
+  .code-block code {
+    color: #ccc;
+    font-family: "Courier New", Courier, monospace;
+  }
+  

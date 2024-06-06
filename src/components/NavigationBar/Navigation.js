@@ -64,7 +64,7 @@ const Navigation = () => {
   return (
     <>
       <CssBaseline>
-        <AppBar position="static">
+        <AppBar position="fixed" sx={{ marginBottom: "50px" }}>
           <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
             <Typography
               variant="h6"
@@ -130,7 +130,14 @@ const Navigation = () => {
           </Toolbar>
         </AppBar>
       </CssBaseline>
-      <ScrollingText sx={{ fontSize: { xs: "12px", sm: "16px" } }}>
+      <ScrollingText
+        sx={{
+          fontSize: { xs: "12px", sm: "16px" },
+          marginTop: "60px",
+          // marginBottom: "60px",
+          // position: "fixed",
+        }}
+      >
         <div>
           <span>Website is under development</span>
           <span style={{ paddingLeft: "100%" }}>
